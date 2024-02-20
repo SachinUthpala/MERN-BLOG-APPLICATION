@@ -3,6 +3,8 @@ import React from 'react'
 
 export default function App() {
   return (
-    <div>App</div>
+    <div>
+      <p className='text-3xl'>App</p>
+    </div>
   )
 }
