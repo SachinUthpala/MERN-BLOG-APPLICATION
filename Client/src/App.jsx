@@ -1,10 +1,23 @@
-/* eslint-disable no-unused-vars */
-import React from 'react'
+import {BrowserRouter , Route , Routes} from 'react-router-dom'
+import Home from './Pages/Home';
+import About from './Pages/About';
+import Dashbord from './Pages/Dashbord';
+import SignUp from './Pages/SignUp';
+import SignIn from './Pages/SignIn';
 
 export default function App() {
   return (
-    <div>
-      <p className='text-3xl text-red-500'>App</p>
-    </div>
+    
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/Sign-in" element={<SignIn/>}/>
+          <Route path="/Sign-Up" element={<SignUp/>}/>
+          <Route path="/dashbord" element={<Dashbord/>}/>
+        </Routes>
+      </BrowserRouter>
+      
+   
   )
 }
