@@ -31,3 +31,15 @@ app.use("/api/user" , UserRout)
 
 //api for signup (Auth)
 app.use("/api/auth" , AthRout)
+
+
+//adding a middle whre to handle the errors
+app.use((err , req , res , next) => {
+    const statusCode = err.statusCode || 500;
+    const massage = err.massage || 'Internal Server Error';
+    res.status(statusCode).json({
+        success : false,
+        statusCode,
+        massage
+    })
+})
