@@ -1,8 +1,36 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unescaped-entities */
 import { Button, Label, TextInput } from "flowbite-react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Await, Link } from "react-router-dom";
 
 export default function SignUp() {
+
+  const [formData , setFormData] = useState({});
+
+  const handleChange = (e) => {
+    setFormData({...formData , [e.target.id] : e.target.value})
+  }
+
+  console.log(formData);
+
+  const submitHandler = async (e) => {
+    e.preventDefault();
+    try {
+      const res = fetch('/api/auth/signUp',{
+        method : 'POST',
+        headers : {'Content-Type' : 'application/json'},
+        body : JSON.stringify(formData)
+      });
+
+      const data = res.json()
+      console.log(data)
+      
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   return (
     <div className="min-h-screen mt-20">
 
@@ -24,18 +52,18 @@ export default function SignUp() {
       {/* right  */}
 
       <div className="right flex-1">
-          <form className="flex flex-col gap-4">
+          <form className="flex flex-col gap-4" onSubmit={submitHandler}>
             <div>
               <Label value="Your UserName" />
-              <TextInput placeholder="Your UserName" id='username' type="text" />
+              <TextInput placeholder="Your UserName" id='userName' type="text" onChange={handleChange}/>
             </div>
             <div>
               <Label value="Your Email"/>
-              <TextInput placeholder="Your Email" id='email' type="text" />
+              <TextInput placeholder="Your Email" id='email' type="email" onChange={handleChange}/>
             </div>
             <div>
               <Label value="Your Password"/>
-              <TextInput placeholder="Your Password" id='password' type="password" />
+              <TextInput placeholder="Your Password" id='password' type="password" onChange={handleChange}/>
             </div>
             <Button gradientDuoTone={'purpleToPink'}  type="submit">Sign Up</Button>
           </form>
