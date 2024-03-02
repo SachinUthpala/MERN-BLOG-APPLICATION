@@ -35,7 +35,7 @@ export default function Header() {
             <FaCloudMoon/>
           </Button>
           {/* link to sign in page  */}
-          <Link>
+          <Link to={'../sign-in'}>
             <Button gradientDuoTone='purpleToBlue' outline>
               Sign In
             </Button>
